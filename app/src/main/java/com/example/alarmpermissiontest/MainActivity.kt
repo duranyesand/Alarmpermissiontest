@@ -10,6 +10,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -22,6 +23,7 @@ import androidx.core.app.AlarmManagerCompat.canScheduleExactAlarms
 import androidx.core.content.ContextCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
+import com.example.alarmpermissiontest.media3.AudioQtPlayController
 import com.example.alarmpermissiontest.ui.theme.AlarmpermissiontestTheme
 import java.net.URL
 
@@ -29,6 +31,8 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val playerController : AudioQtPlayController = AudioQtPlayController(applicationContext)
+
         enableEdgeToEdge()
         setContent {
 
@@ -58,7 +62,9 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding).clickable {
+                            playerController.play()
+                        }
                     )
                 }
             }

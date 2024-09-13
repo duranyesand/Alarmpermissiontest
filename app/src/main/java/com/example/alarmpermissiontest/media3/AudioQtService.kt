@@ -8,31 +8,33 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
+import javax.inject.Inject
 
 class AudioQtService : MediaLibraryService() {
 
     lateinit var session : MediaLibrarySession
 
-    lateinit var scope : CoroutineScope
+//    lateinit var scope : CoroutineScope
 
     lateinit var player : Player
+
+    override fun onCreate() {
+        super.onCreate()
+        player = ExoPlayer.Builder(this).build()
+    }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         super.onTaskRemoved(rootIntent)
         if (!player.playWhenReady) {
-            // If the player isn't set to play when ready, the service is stopped and resources released.
-            // This is done because if the app is swiped away from recent apps without this check,
-            // the notification would remain in an unresponsive state.
-            // Further explanation can be found at: https://github.com/androidx/media/issues/167#issuecomment-1615184728
             release()
             stopSelf()
         }
     }
-
+//    player = Player()
     private fun release() {
         player.release()
-        session.release()
-        scope.cancel()
+//        session.release()
+//        scope.cancel()
     }
 
     override fun onDestroy() {
@@ -44,6 +46,7 @@ class AudioQtService : MediaLibraryService() {
         return session.takeUnless { session ->
             session.invokeIsReleased
         }
+        return null
     }
 
 }

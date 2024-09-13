@@ -1,7 +1,9 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.jetbrains.kotlin.android) apply false
+    id("kotlinx-serialization")
 
     id ("com.google.dagger.hilt.android")
     id ("kotlin-kapt")
@@ -42,9 +44,11 @@ android {
 
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+//    val compileKotlin: KotlinCompile by tasks
+//
+//    compileKotlin.kotlinOptions {
+//        jvmTarget = JavaVersion.VERSION_17.toString()
+//    }
     buildFeatures {
         compose = true
     }
@@ -58,6 +62,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+//    kotlinOptions {
+//        jvmTarget = "17"
+//    }
 
 }
 
@@ -75,9 +82,9 @@ dependencies {
     // hilt
     implementation("com.google.dagger:hilt-android:2.49")
     implementation(libs.androidx.media3.exoplayer)
-    kapt ("androidx.hilt:hilt-compiler:1.2.0")
-    kapt("com.google.dagger:hilt-android-compiler:2.49")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation (libs.androidx.hilt.compiler)
+    implementation(libs.hilt.android.compiler)
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")22
 
     // serialization
     implementation(libs.kotlinx.serialization.json)
@@ -85,6 +92,7 @@ dependencies {
     // coroutine_guava
     implementation(libs.coroutines.guava)
 
+//    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -101,6 +109,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }
 kapt {
     correctErrorTypes = true

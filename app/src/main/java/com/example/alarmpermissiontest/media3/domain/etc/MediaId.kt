@@ -1,10 +1,15 @@
 package com.example.alarmpermissiontest.media3.domain.etc
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+import kotlinx.serialization.SerialName
+
+
+
+@Suppress("PLUGIN_IS_NOT_ENABLED")
 @Serializable
 sealed interface MediaId {
+
     @Serializable
     @SerialName("root")
     object Root : MediaId
