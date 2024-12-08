@@ -1,8 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlinx-serialization")
 
     id ("com.google.dagger.hilt.android")
@@ -21,6 +19,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -44,47 +43,59 @@ android {
 
     }
 
-//    val compileKotlin: KotlinCompile by tasks
-//
-//    compileKotlin.kotlinOptions {
-//        jvmTarget = JavaVersion.VERSION_17.toString()
-//    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     buildFeatures {
         compose = true
     }
-
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
-
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-//    kotlinOptions {
-//        jvmTarget = "17"
-//    }
+
 
 }
+
+
 
 dependencies {
 
     // Media3
-    // media 재생 관련 UI
-    implementation("androidx.media3:media3-ui:1.4.1")
-    //
-    implementation("androidx.media3:media3-common:1.4.1")
-    // media3 session
-    implementation("androidx.media3:media3-session:1.4.1")
+    implementation(libs.androidx.media3.player)
+    implementation(libs.androidx.media3.player.session)
+    implementation(libs.androidx.media3.player.dash)
+    implementation(libs.androidx.media3.ui)
 
+    implementation("androidx.media3:media3-exoplayer-hls:1.4.1")
+
+//    // media 재생 관련 UI
+//    implementation(libs.androidx.media3.ui)
+//    //
+//    implementation(libs.androidx.media3.common)
+//    // media3 session
+//    implementation(libs.androidx.media3.session)
+
+    implementation ("androidx.multidex:multidex:2.0.1")
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.kotlinx.immutable)
+    implementation(libs.androidx.datastore)
 
     // hilt
-    implementation("com.google.dagger:hilt-android:2.49")
+    implementation(libs.hilt.android)
     implementation(libs.androidx.media3.exoplayer)
-    implementation (libs.androidx.hilt.compiler)
-    implementation(libs.hilt.android.compiler)
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")22
+    implementation(libs.androidx.media3.exoplayer.dash)
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
+//    implementation (libs.androidx.hilt.compiler)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // serialization
     implementation(libs.kotlinx.serialization.json)
@@ -109,6 +120,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
+
 
 }
 kapt {

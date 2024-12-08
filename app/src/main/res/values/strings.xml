@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Alarmpermissiontest</string>
     <string name="media_session_root_title">ddddd\n</string>
+
+    <string name="media_session_root_description">DroidKnights 2023 전체 발표 목록 입니다.</string>
+    <string name="media_session_keynote_title">웅냥웅냥</string>
+    <string name="media_session_keynote_description">DroidKnights 2023 Keynote</string>
+    <string name="media_session_track_1_title">웅냥웅냥</string>
+    <string name="media_session_track_1_description">DroidKnights 2023 Track 01 발표 목록 입니다.</string>
+    <string name="media_session_track_2_title">웅냥웅냥</string>
+    <string name="media_session_track_2_description">DroidKnights 2023 Track 02 목록 입니다.</string>
+    <string name="media_session_track_3_title">웅냥웅냥</string>
+    <string name="media_session_track_3_description">DroidKnights 2023 Track 03 목록 입니다.</string>
 </resources>
