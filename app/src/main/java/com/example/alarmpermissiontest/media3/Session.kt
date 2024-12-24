@@ -6,7 +6,7 @@ data class Session(
     val id: String,
     val title: String,
     val content: String,
-    val speakers: List<Speaker>,
+//    val speakers: List<Speaker>,
     val level: Level,
     val tags: List<Tag>,
     val room: Room,
@@ -16,11 +16,11 @@ data class Session(
     val isBookmarked: Boolean,
 )
 
-data class Speaker(
-    val name: String,
-    val introduction: String,
-    val imageUrl: String,
-)
+//data class Speaker(
+//    val name: String,
+//    val introduction: String,
+//    val imageUrl: String,
+//)
 enum class Level {
     ETC,
     BASIC,

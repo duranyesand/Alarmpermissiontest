@@ -6,9 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.alarmpermissiontest.PlayerUiState
 import com.example.alarmpermissiontest.media3.AudioQT.AudioQtStateManager
 import com.example.alarmpermissiontest.media3.AudioQtPlayController
-import com.example.alarmpermissiontest.media3.PlayerRoute
-import com.example.alarmpermissiontest.media3.usecase.GetCurrentPlayingSessionUseCase
-import com.example.alarmpermissiontest.media3.usecase.UpdateCurrentPlayingSessionUseCase
+//import com.example.alarmpermissiontest.media3.PlayerRoute
+//import com.example.alarmpermissiontest.media3.usecase.UpdateCurrentPlayingSessionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class PlayerViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    getCurrentPlayingSessionUseCase: GetCurrentPlayingSessionUseCase,
-    updateCurrentPlayingSessionUseCase: UpdateCurrentPlayingSessionUseCase,
+//    getCurrentPlayingSessionUseCase: GetCurrentPlayingSessionUseCase,
+//    updateCurrentPlayingSessionUseCase: UpdateCurrentPlayingSessionUseCase,
     private val playbackStateManager: AudioQtStateManager,
     private val playerController: AudioQtPlayController,
 ) : ViewModel() {
@@ -29,11 +28,6 @@ class PlayerViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val sessionId = savedStateHandle.get<String?>(PlayerRoute.argumentName)
-                .takeIf { !it.isNullOrBlank() }
-                ?: getCurrentPlayingSessionUseCase()?.id
-                ?: "1" // 처음부터 재생
-            updateCurrentPlayingSessionUseCase(sessionId)
             playerController.play()
         }
         viewModelScope.launch {

@@ -5,7 +5,7 @@ import android.util.Log
 import com.example.alarmpermissiontest.media3.Level
 import com.example.alarmpermissiontest.media3.Room
 import com.example.alarmpermissiontest.media3.Session
-import com.example.alarmpermissiontest.media3.Speaker
+//import com.example.alarmpermissiontest.media3.Speaker
 import com.example.alarmpermissiontest.media3.Tag
 import com.example.alarmpermissiontest.media3.Video
 import kotlinx.coroutines.flow.Flow
@@ -195,7 +195,7 @@ internal fun SessionResponse.toData(): Session = Session(
     id = this.id,
     title = this.title,
     content = this.content,
-    speakers = this.speakers.map { it.toData() },
+//    speakers = this.speakers.map { it.toData() },
     level = this.level.toData(),
     tags = this.tags.map { Tag(it) },
     room = this.room?.toData() ?: Room.ETC,
@@ -218,11 +218,11 @@ internal fun RoomResponse.toData(): Room = when (this) {
     RoomResponse.TRACK3 -> Room.TRACK3
 }
 
-internal fun SpeakerResponse.toData(): Speaker = Speaker(
-    name = this.name,
-    introduction = this.introduction,
-    imageUrl = this.imageUrl
-)
+//internal fun SpeakerResponse.toData(): Speaker = Speaker(
+//    name = this.name,
+//    introduction = this.introduction,
+//    imageUrl = this.imageUrl
+//)
 
 internal fun VideoResponse.toData(): Video? =
 

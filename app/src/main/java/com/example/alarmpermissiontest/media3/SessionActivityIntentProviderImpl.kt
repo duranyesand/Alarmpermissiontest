@@ -18,10 +18,7 @@ class SessionActivityIntentProviderImpl @Inject constructor(
 
         val deepLinkIntent = Intent(
             Intent.ACTION_VIEW,
-            // 딥링크 URL 목적지 설정
-
             Uri.parse("https://www.youtube.com/watch?v=gR5SQ01x2Ik"), // Use Uri.parse to convert the string to a URI
-//            PlayerRoute.deepLinkUriPattern.toUri(),
             context,
             MainActivity::class.java
         )
@@ -32,16 +29,7 @@ class SessionActivityIntentProviderImpl @Inject constructor(
             getPendingIntent(
                 0,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-
         }
         return deepLinkPendingIntent
     }
-}
-
-
-object PlayerRoute {
-    const val route = "player"
-    fun route(sessionId: String = ""): String = "$route?$argumentName=$sessionId"
-    const val argumentName = "sessionId"
-    const val deepLinkUriPattern = "droidknights://$route"
 }

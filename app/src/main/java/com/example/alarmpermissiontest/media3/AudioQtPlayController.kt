@@ -7,7 +7,7 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.example.alarmpermissiontest.media3.playback.MediaItemProvider
-import com.example.alarmpermissiontest.media3.playback.SessionRepository
+//import com.example.alarmpermissiontest.media3.playback.SessionRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +19,7 @@ import kotlin.coroutines.cancellation.CancellationException
 
 class AudioQtPlayController @Inject constructor (
     private val context : Context,
-    private val sessionRepository : SessionRepository,
+//    private val sessionRepository : SessionRepository,
     private val mediaItemProvider: MediaItemProvider,
 ) {
 

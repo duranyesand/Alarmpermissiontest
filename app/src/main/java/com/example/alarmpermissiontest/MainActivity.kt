@@ -28,98 +28,35 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    private lateinit var alarmManager: AlarmManager
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
-        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        enableEdgeToEdge()
         setContent {
-//            val playerController : AudioQtPlayController()
-
-
-
-
-
-
-            /**
-             * 알람 권한 허용 메시지
-             * <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" /> 추가하기
-             */
-            // SCHEDULE_EXACT_ALARM
-            val context = LocalContext.current
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-
-                val alarmManager = ContextCompat.getSystemService(context, AlarmManager::class.java)
-
-                if (alarmManager?.canScheduleExactAlarms() == false) {
-                    Intent().also { intent ->
-                        intent.action = Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM
-                        intent.data = Uri.parse("package:$packageName")
-                        context.startActivity(intent)
-                    }
-                }
-                Log.d("Sfsfsfsfsf" , "package:$packageName")
-
-            }
-            // SCHEDULE_EXACT_ALARM
-
-
-            AlarmpermissiontestTheme {
-
-
+            Column(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                val viemodsfsf: PlayerViewModel = hiltViewModel()
                 Column(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
-
-                    val viemodsfsf: PlayerViewModel = hiltViewModel()
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        // 버튼 클릭 시 플레이어로 음악 재생
-                        Button(onClick = {
-                            viemodsfsf.rewind(15)
-                        }) {
-                            Text(text = "재생하기")
-                        }
-
-                        val context = LocalContext.current
-                        Button(onClick = {
-//                            setDailyAlarm(context , 5 , 6)
-                            Log.d("QTAlarmReceiver" , "setAlarmSucced")
-                        }) {
-                            Text(text = "알람 맞추기")
-                        }
-
-
-                        // SessionDetailScreen에서 플레이어 연동
-//                        SessionDetailScreen(
-//                            sessionId = "1",
-//                            onBackClick = {},
-//                            onShowPlayer = {
-//                                playerController.playAudio("https://www.example.com/audio.mp3")  // 실제 재생할 URL 또는 파일 경로
-//                            },
-//                        )
+                    // 버튼 클릭 시 플레이어로 음악 재생
+                    Button(onClick = {
+                        viemodsfsf.rewind(15)
+                    }) {
+                        Text(text = "재생하기")
                     }
 
 
                 }
+
+
             }
-
-
         }
 
 
     }
 }
-
 
 
 sealed interface PlayerUiState {

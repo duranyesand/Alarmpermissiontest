@@ -57,13 +57,13 @@ class AudioQtService : MediaLibraryService() {
     lateinit var player: Player
 
 
-//    private val customMediaNotificationProvider: CustomMediaNotificationProvider = CustomMediaNotificationProvider(context = context)
+    //    private val customMediaNotificationProvider: CustomMediaNotificationProvider = CustomMediaNotificationProvider(context = context)
     @OptIn(UnstableApi::class)
     override fun onCreate() {
         super.onCreate()
         // 미디어 플레이어 초기화
         player = ExoPlayer.Builder(this).build()
-
+//        player
 
 
     }
@@ -102,8 +102,7 @@ class AudioQtService : MediaLibraryService() {
 
 private val MediaSession.invokeIsReleased: Boolean
     get() = try {
-        // temporarily checked to debug
-        // https://github.com/androidx/media/issues/422
+
         MediaSession::class.java.getDeclaredMethod("isReleased")
             .apply { isAccessible = true }
             .invoke(this) as Boolean

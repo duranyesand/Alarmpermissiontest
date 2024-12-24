@@ -64,6 +64,7 @@ android {
 
 
 dependencies {
+    implementation ("androidx.activity:activity-ktx:1.7.1")
 
     // Media3
     implementation(libs.androidx.media3.player)

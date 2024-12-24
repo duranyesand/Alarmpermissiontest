@@ -51,8 +51,16 @@ object PlaybackModule {
         service: Service,
         playbackStateListener: AudioQtStateListener,
     ): Player {
+
+        val headersMap: MutableMap<String, String> = HashMap()
+//        headersMap["Authorization"] = "Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MzQ1NzM4NTEsImV4cCI6MTczNDU3Nzc1MSwiaXNzIjoiU3ludGVrIiwiYXVkIjoiRFBsdXMtTWVtYmVyIn0._kmeJZCcvzzKUdUX3fQXVQrVaJJ8o-Gzf5SQiVognhs"}"
+        headersMap["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MzUwMTczMzUsImV4cCI6MTczNTAyMTIzNSwiaXNzIjoiU3ludGVrIiwiYXVkIjoiRFBsdXMtTWVtYmVyIn0.YP7WRD0NxBtx86BGQpJhWgLFk4OnWZhs4Hs2143slXI"
+
+
         val dataSourceFactory = DefaultDataSource.Factory(service)
+//        val hlsDataSourceFactory = DefaultHttpDataSource.Factory().setDefaultRequestProperties(headersMap)
         val hlsDataSourceFactory = DefaultHttpDataSource.Factory()
+
 //        val mediaSourceFactory = ProgressiveMediaSource.Factory(dataSourceFactory)
 
 //        val mediaSourceFactory = DashMediaSource.Factory(
@@ -66,8 +74,8 @@ object PlaybackModule {
 
         val mediaSourceFactory = HlsMediaSource.Factory(
             hlsDataSourceFactory
-
         )
+
 
         val audioAttributes = AudioAttributes.Builder()
             .setContentType(C.AUDIO_CONTENT_TYPE_MOVIE)
